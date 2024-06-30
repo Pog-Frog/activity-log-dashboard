@@ -9,7 +9,8 @@ export default function Home() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [currentEvents, setCurrentEvents] = useState<Event[]>([]);
-  const { events, isLoading } = useEvents(currentPage, 10);
+  const [searchQuery, setSearchQuery] = useState('');
+  const { events, isLoading } = useEvents(currentPage, 10, searchQuery);
 
   useEffect(() => {
     if (events) {
@@ -25,6 +26,12 @@ export default function Home() {
     setCurrentPage(prevPage => prevPage + 1);
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentEvents([]);
+    setCurrentPage(1);
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <div className='bg-white p-20'>
       <div className='min-h-[80vh] rounded-2xl rounded-b-none shadow border border-zinc-100'>
@@ -32,7 +39,7 @@ export default function Home() {
           <div className="w-full bg-neutral-100 rounded-t-2xl">
             <div className='flex flex-col gap-4 px-8 pt-8 pb-6'>
               <div className='flex flex-row'>
-                <input type='text' placeholder='Search name, email or action...' className='w-3/4 p-2 ps-10 border-2 bg-transparent border-neutral-200 rounded-l-md focus:outline-none' />
+                <input type='text' onChange={handleSearchChange} placeholder='Search name, email or action...' className='w-3/4 p-2 ps-10 border-2 bg-transparent border-neutral-200 rounded-l-md focus:outline-none' />
                 <div className='flex fle-col gap-1 relative'>
                   <button className='flex flex-row gap-1 justify-center items-center p-4 border-y-2 border-r-2 border-neutral-200'>
                     <Image src='icons/filter.svg' width={18} height={18} alt={''} />
