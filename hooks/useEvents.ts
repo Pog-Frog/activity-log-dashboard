@@ -5,7 +5,7 @@ import Event from "@/interfaces/event";
 
 export const useEvents = (page: number, pageSize: number, searchQuery?: string, filterType?: string) => {
     const { data, error, mutate } = useSWR<Event[]>(
-        `/api/events?page=${page}&pageSize=${pageSize}&searchQuery=${searchQuery || ""}`,
+        `/api/events?page=${page}&pageSize=${pageSize}&filterType=${filterType || ""}&searchQuery=${searchQuery || ""}`,
         async (url: string) => {
             const response = await axios.get(url);
             return response.data;
