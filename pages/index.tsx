@@ -4,6 +4,7 @@ import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react';
 import Event from '@/interfaces/event';
 import useFilterModal from '@/hooks/useFilterModal';
+import useDetailsModal from '@/hooks/useDetailsModal';
 
 
 export default function Home() {
@@ -18,6 +19,17 @@ export default function Home() {
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
+
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const detailsModal = useDetailsModal();
+  const toggleDetailsOpen = useCallback(() => {
+    setIsDetailsOpen((prev) => !prev);
+  }, []);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const handleEventClick = (event: Event) => {
+    setSelectedEvent(event);
+    toggleDetailsOpen();
+  };
 
   const [filterType, setFilterType] = useState('actor_name');
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,23 +108,37 @@ export default function Home() {
                 </div>
               </div>
               <div className='grid grid-cols-3'>
-                <button className="text-start text-zinc-600 text-sm font-semibold uppercase">actor</button>
-                <button className="text-start text-zinc-600 text-sm font-semibold uppercase">action</button>
-                <button className="text-start text-zinc-600 text-sm font-semibold uppercase">date</button>
+                <div className="text-start text-zinc-600 text-sm font-semibold uppercase">actor</div>
+                <div className="text-start text-zinc-600 text-sm font-semibold uppercase">action</div>
+                <div className="text-start text-zinc-600 text-sm font-semibold uppercase">date</div>
               </div>
             </div>
           </div>
           <div className='w-full grid grid-cols gap-8 py-6'>
 
+            {(isDetailsOpen && selectedEvent) && (
+              <div className="fixed inset-0 flex justify-center items-center">
+                <div className="min-w-[85%] rounded-2xl shadow border border-zinc-100 bg-white p-4">
+                  
+                  <h2 className="text-lg font-bold">Event Details</h2>
+                  
+                  <div>Actor Name: {selectedEvent?.actor_name}</div>
+                  <div>Action Name: {selectedEvent?.action.name}</div>
+                  <div>Occurred At: {formatDate(selectedEvent?.occurred_at)}</div>
+                  <button onClick={toggleDetailsOpen}>Close</button>
+                </div>
+              </div>
+            )}
+
             {isLoading ? <div>Loading...</div> : currentEvents?.map((event) => (
-              <div key={event.id} className="w-full grid grid-cols-3 items-start px-8 max-h-5">
+              <button key={event.id} className="w-full grid grid-cols-3 items-start px-8 max-h-5" onClick={() => handleEventClick(event)}>
                 <div className='flex flex-row gap-3 items-center justify-start'>
                   <div className="w-6 h-6 bg-gradient-to-br from-orange-400 to-fuchsia-600 rounded-full text-white text-center inline-flex items-center justify-center">{event.actor_name.charAt(0)}</div>
                   <div className="text-zinc-900 text-sm font-normal font-['Inter']">{event.actor_name}</div>
                 </div>
                 <div className="text-zinc-900 text-sm font-normal font-['Inter']">{event.action.name}</div>
                 <div className="text-zinc-900 text-sm font-normal font-['Inter']">{formatDate(event.occurred_at)}</div>
-              </div>
+              </button>
             ))}
 
           </div>
