@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import axios from "axios";
+import Event from "@/interfaces/event";
 
 
 export const useEvents = (page: number, pageSize: number, searchQuery?: string, filterType?: string) => {
