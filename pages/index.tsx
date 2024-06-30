@@ -202,13 +202,6 @@ export default function Home() {
                     </div>
 
                   </div>
-
-                  {/* <h2 className="text-lg font-bold">Event Details</h2>
-                  
-                  <div>Actor Name: {selectedEvent?.actor_name}</div>
-                  <div>Action Name: {selectedEvent?.action.name}</div>
-                  <div>Occurred At: {formatDate(selectedEvent?.occurred_at)}</div>
-                  <button onClick={toggleDetailsOpen}>Close</button> */}
                 </div>
               </div>
             )}
