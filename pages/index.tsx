@@ -1,8 +1,9 @@
 import { useEvents } from '@/hooks/useEvents'
 import Image from 'next/image'
 import moment from 'moment'
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Event from '@/interfaces/event';
+import useFilterModal from '@/hooks/useFilterModal';
 
 
 export default function Home() {
@@ -11,6 +12,12 @@ export default function Home() {
   const [currentEvents, setCurrentEvents] = useState<Event[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const { events, isLoading } = useEvents(currentPage, 10, searchQuery);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const filterModal = useFilterModal();
+  const toggleOpen = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
 
   useEffect(() => {
     if (events) {
@@ -41,10 +48,38 @@ export default function Home() {
               <div className='flex flex-row'>
                 <input type='text' onChange={handleSearchChange} placeholder='Search name, email or action...' className='w-3/4 p-2 ps-10 border-2 bg-transparent border-neutral-200 rounded-l-md focus:outline-none' />
                 <div className='flex fle-col gap-1 relative'>
-                  <button className='flex flex-row gap-1 justify-center items-center p-4 border-y-2 border-r-2 border-neutral-200'>
+                  <button onClick={toggleOpen} className='flex flex-row gap-1 justify-center items-center p-4 border-y-2 border-r-2 border-neutral-200'>
                     <Image src='icons/filter.svg' width={18} height={18} alt={''} />
                     <div className="text-zinc-600 text-xs font-semibold uppercase">filter</div>
                   </button>
+                  {isOpen && (
+                    <div className="absolute rounded-xl shadow-md min-h-[10vh] min-w-[10vw] bg-white overflow-hidden right-30 top-16 text-sm">
+                      <div className="flex flex-col gap-2 cursor-pointer items-center justify-center p-2">
+                        <ul className="flex flex-col gap-2">
+                          <li className="flex flex-row gap-2 items-center">
+                            <input type="radio" name="filterType" value="actor_name" />
+                            <label>Actor Name</label>
+                          </li>
+                          <li className="flex flex-row gap-2 items-center">
+                            <input type="radio" name="filterType" value="actor_id" />
+                            <label>Actor ID</label>
+                          </li>
+                          <li className="flex flex-row gap-2 items-center">
+                            <input type="radio" name="filterType" value="target_id" />
+                            <label>Target ID</label>
+                          </li>
+                          <li className="flex flex-row gap-2 items-center">
+                            <input type="radio" name="filterType" value="action_id" />
+                            <label>Action ID</label>
+                          </li>
+                          <li className="flex flex-row gap-2 items-center">
+                            <input type="radio" name="filterType" value="action_name" />
+                            <label>Action Name</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className='flex flex-row gap-1 justify-center items-center p-4 border-y-2 border-r-2 border-neutral-200'>
                   <Image src='icons/export.svg' width={18} height={18} alt={''} />
