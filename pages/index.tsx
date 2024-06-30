@@ -118,86 +118,92 @@ export default function Home() {
 
             {(isDetailsOpen && selectedEvent) && (
               <div className="fixed inset-0 flex justify-center items-center">
-                <div className="min-w-[83%] rounded-2xl shadow border border-zinc-100 bg-white p-10 items-center justify-center">
+                <div className="relative min-w-[85%] rounded-2xl shadow border border-zinc-100 bg-white p-10 items-center justify-center">
+                  <button
+                    className="absolute top-0 right-0 m-4 text-zinc-600 hover:text-zinc-800"
+                    onClick={() => setIsDetailsOpen(false)}
+                  >
+                    <Image src='icons/close.svg' width={24} height={24} alt={''} />
+                  </button>
                   <div className='grid grid-cols-3 gap-x-48 gap-y-10 items-start'>
 
                     <div className='flex flex-col gap-5'>
                       <div className="text-neutral-400 text-sm font-medium uppercase">actor</div>
                       <div className='flex flex-col gap-3'>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter']">Name</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.actor_name}</div>
-                          </div>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-6">Id</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.actor_id}</div>
-                          </div>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter']">Group</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.group}</div>
-                          </div>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter']">Name</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.actor_name}</div>
                         </div>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-6">Id</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.actor_id}</div>
+                        </div>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter']">Group</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.group}</div>
+                        </div>
+                      </div>
                     </div>
 
                     <div className='flex flex-col gap-5'>
                       <div className="text-neutral-400 text-sm font-medium uppercase">action</div>
                       <div className='flex flex-col gap-3'>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-6">Id</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.action.id}</div>
-                          </div>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter']">Object</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.action.object}</div>
-                          </div>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-1">Name</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.action.name}</div>
-                          </div>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-6">Id</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.action.id}</div>
                         </div>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter']">Object</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.action.object}</div>
+                        </div>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-1">Name</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.action.name}</div>
+                        </div>
+                      </div>
                     </div>
 
                     <div className='flex flex-col gap-5'>
                       <div className="text-neutral-400 text-sm font-medium uppercase">date</div>
                       <div className='flex flex-col gap-3'>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter']">Readable</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{formatDate(selectedEvent?.occurred_at)}</div>
-                          </div>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter']">Readable</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{formatDate(selectedEvent?.occurred_at)}</div>
                         </div>
+                      </div>
                     </div>
 
                     <div className='flex flex-col gap-5'>
                       <div className="text-neutral-400 text-sm font-medium uppercase">metadata</div>
                       <div className='flex flex-col gap-3'>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-16">Id</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.metadata.id}</div>
-                          </div>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-8">Redirect</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.metadata.redirect}</div>
-                          </div>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-1">X-Request-Id</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.metadata.x_request_id}</div>
-                          </div>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-16">Id</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.metadata.id}</div>
                         </div>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-8">Redirect</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.metadata.redirect}</div>
+                        </div>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-1">X-Request-Id</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.metadata.x_request_id}</div>
+                        </div>
+                      </div>
                     </div>
 
                     <div className='flex flex-col gap-5'>
                       <div className="text-neutral-400 text-sm font-medium uppercase">target</div>
                       <div className='flex flex-col gap-3'>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-8">Id</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.target_id}</div>
-                          </div>
-                          <div className='flex flex-row gap-3'>
-                            <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-2">Name</div>
-                            <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.target_name}</div>
-                          </div>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-8">Id</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.target_id}</div>
                         </div>
-                        <div className='flex flex-col gap-3'>
+                        <div className='flex flex-row gap-3'>
+                          <div className="text-neutral-400 text-sm font-normal font-['Inter'] mr-2">Name</div>
+                          <div className="text-black text-sm font-normal font-['Inter']">{selectedEvent?.target_name}</div>
+                        </div>
+                      </div>
+                      <div className='flex flex-col gap-3'>
                       </div>
                     </div>
 
