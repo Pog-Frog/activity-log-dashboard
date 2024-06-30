@@ -19,6 +19,11 @@ export default function Home() {
     setIsOpen((prev) => !prev);
   }, []);
 
+  const [filterType, setFilterType] = useState('actor_name');
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterType(e.target.value);
+  };
+
   useEffect(() => {
     if (events) {
       setCurrentEvents(prevEvents => [...prevEvents, ...events]);
@@ -57,23 +62,23 @@ export default function Home() {
                       <div className="flex flex-col gap-2 cursor-pointer items-center justify-center p-2">
                         <ul className="flex flex-col gap-2">
                           <li className="flex flex-row gap-2 items-center">
-                            <input type="radio" name="filterType" value="actor_name" />
+                            <input type="radio" name="filterType" value="actor_name" checked={filterType === 'actor_name'} onChange={handleFilterChange} />
                             <label>Actor Name</label>
                           </li>
                           <li className="flex flex-row gap-2 items-center">
-                            <input type="radio" name="filterType" value="actor_id" />
+                            <input type="radio" name="filterType" value="actor_id" checked={filterType === 'actor_id'} onChange={handleFilterChange} />
                             <label>Actor ID</label>
                           </li>
                           <li className="flex flex-row gap-2 items-center">
-                            <input type="radio" name="filterType" value="target_id" />
+                            <input type="radio" name="filterType" value="target_id" checked={filterType === 'target_id'} onChange={handleFilterChange} />
                             <label>Target ID</label>
                           </li>
                           <li className="flex flex-row gap-2 items-center">
-                            <input type="radio" name="filterType" value="action_id" />
+                            <input type="radio" name="filterType" value="action_id" checked={filterType === 'action_id'} onChange={handleFilterChange} />
                             <label>Action ID</label>
                           </li>
                           <li className="flex flex-row gap-2 items-center">
-                            <input type="radio" name="filterType" value="action_name" />
+                            <input type="radio" name="filterType" value="action_name" checked={filterType === 'action_name'} onChange={handleFilterChange} />
                             <label>Action Name</label>
                           </li>
                         </ul>
