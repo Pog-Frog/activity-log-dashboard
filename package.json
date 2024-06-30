@@ -16,9 +16,11 @@
     "@faker-js/faker": "^8.4.1",
     "@ngneat/falso": "^7.2.0",
     "@prisma/client": "^5.16.1",
+    "axios": "^1.7.2",
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@types/node": "^20.14.9",
