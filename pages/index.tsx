@@ -213,7 +213,7 @@ export default function Home() {
             )}
 
             {isLoading ? <div>Loading...</div> : currentEvents?.map((event) => (
-              <button key={event.id} className="w-full grid grid-cols-3 items-start px-8 max-h-5" onClick={() => handleEventClick(event)}>
+              <button key={event.id} className="w-full grid grid-cols-3 items-start px-8 max-h-5 text-start" onClick={() => handleEventClick(event)}>
                 <div className='flex flex-row gap-3 items-center justify-start'>
                   <div className="w-6 h-6 bg-gradient-to-br from-orange-400 to-fuchsia-600 rounded-full text-white text-center inline-flex items-center justify-center">{event.actor_name.charAt(0)}</div>
                   <div className="text-zinc-900 text-sm font-normal font-['Inter']">{event.actor_name}</div>
