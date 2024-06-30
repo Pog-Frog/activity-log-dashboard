@@ -104,15 +104,6 @@ export default function Home() {
           </div>
           <div className='w-full grid grid-cols gap-8 py-6'>
 
-            {/* <div className="w-full grid grid-cols-3 items-start px-8">
-                <div className='flex flex-row gap-3 items-center justify-start'>
-                  <div className="w-6 h-6 bg-gradient-to-br from-orange-400 to-fuchsia-600 rounded-full text-white text-center inline-flex items-center justify-center">A</div>
-                  <div className="text-zinc-900 text-sm font-normal font-['Inter']">event.actor_name</div>
-                </div>
-                <div className="text-zinc-900 text-sm font-normal font-['Inter']">event.action.name</div>
-                <div className="text-zinc-900 text-sm font-normal font-['Inter']">event.action.occurred_at</div>
-              </div> */}
-
             {isLoading ? <div>Loading...</div> : currentEvents?.map((event) => (
               <div key={event.id} className="w-full grid grid-cols-3 items-start px-8 max-h-5">
                 <div className='flex flex-row gap-3 items-center justify-start'>
