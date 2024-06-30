@@ -31,6 +31,7 @@ export default async function handler(
           },
           include: {
             action: true,
+            metadata: true,
           },
         });
         break;
@@ -48,6 +49,7 @@ export default async function handler(
           },
           include: {
             action: true,
+            metadata: true,
           },
         });
         break;
@@ -65,6 +67,7 @@ export default async function handler(
           },
           include: {
             action: true,
+            metadata: true,
           },
         });
         break;
@@ -82,6 +85,7 @@ export default async function handler(
           },
           include: {
             action: true,
+            metadata: true,
           },
         });
         break;
@@ -101,6 +105,7 @@ export default async function handler(
           },
           include: {
             action: true,
+            metadata: true,
           },
         });
         break;
@@ -134,6 +139,7 @@ export default async function handler(
           },
           include: {
             action: true,
+            metadata: true,
           },
         });
         break;
