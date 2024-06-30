@@ -8,8 +8,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { searchQuery } = req.query;
+  const { page, pageSize, searchQuery } = req.query;
 
+  const pageNumber = parseInt(page as string) || 1;
+  const size = parseInt(pageSize as string) || 10;
 
   try {
     const events = await prisma.event.findMany({
@@ -34,6 +36,8 @@ export default async function handler(
           }
         ],
       },
+      take: size,
+      skip: (pageNumber - 1) * size,
       orderBy: {
         id: 'desc',
       },
