@@ -10,6 +10,7 @@ export default interface Event {
     group: string
     action: Action
     target_id: string
+    target_name: string
     location: string
     occurred_at: string
     metadata: Metadata
